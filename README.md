@@ -10,7 +10,7 @@ So if your app uses device storage, it’s time to start preparing it for scoped
 
 
 # Public file storage on Android 10
-In the past before Android 10 saving a content, let’s say an image, on a device from our app will make that content publicly available to all the apps installed.
+In the past before Android 10, saving a content, let’s say an image, on a device from our app will make that content publicly available to all the apps installed.
 Those implementations, together with WRITE_EXTERNAL_STORAGE permissions, work until Android 9, while they throw a SecurityException on Android 10.
 
 On Android 10 things slightly changed: we can still save content in external media directories, but only through the content resolver.
