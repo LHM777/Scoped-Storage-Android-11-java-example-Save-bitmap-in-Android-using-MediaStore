@@ -24,3 +24,17 @@ Can be used to specify a subfolder in the directory of destination e.g. if we ar
 ### IS_PENDING : 
 Used to tell the content resolver there is an operation going on. Once we copied the data in the destination file (done in the copyFileData() function), we can set this value to false like shown at the end of the example below. Copying the data into the destination file can be easily done.
 
+
+
+
+# Other types of files
+I made an example showing how to save an image file. What about other types of files? The MediaStore class contains different subclasses for this purpose. In this example, you could see we were using MediaStore.Images.xyz.
+
+The other available ones are:
+- MediaStore.Video
+- MediaStore.Audio
+- MediaStore.Downloads
+
+As a general rule, I tend to save all the media content in the related subtype folder (so a .mp3 file will use the MediaStore.Audio class) while everything else goes in the downloads folder using the MediaStore.Downloads class.
+
+
