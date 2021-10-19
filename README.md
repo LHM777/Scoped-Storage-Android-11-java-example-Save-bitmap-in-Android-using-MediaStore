@@ -38,3 +38,8 @@ The other available ones are:
 As a general rule, I tend to save all the media content in the related subtype folder (so a .mp3 file will use the MediaStore.Audio class) while everything else goes in the downloads folder using the MediaStore.Downloads class.
 
 
+
+# Notes
+Unfortunately, the APIs used in Android 10 are not available in the older versions of Android, which means we need to maintain two different ways of saving content externally, which I will also cover in this example
+
+
