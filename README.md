@@ -6,3 +6,21 @@ With scoped storage, an app no longer has direct access to all the files in exte
 Because this can have a potentially heavy impact on existing apps, Android 10 provides an opt-out mechanism. When enabled, it allows an app to work without any of these requirements. The caveat here is that when your app targets API 30 (Android 11), scoped storage starts to be mandatory.
 
 So if your app uses device storage, it’s time to start preparing it for scoped storage.
+
+
+
+# Public file storage on Android 10
+In the past before Android 10 saving a content, let’s say an image, on a device from our app will make that content publicly available to all the apps installed.
+Those implementations, together with WRITE_EXTERNAL_STORAGE permissions, work until Android 9, while they throw a SecurityException on Android 10.
+
+On Android 10 things slightly changed: we can still save content in external media directories, but only through the content resolver.
+
+Here is an example of how to do it:
+
+### RELATIVE_PATH :
+Can be used to specify a subfolder in the directory of destination e.g. if we are saving into the pictures directory and we want our content to be saved into Our_subdirectory we can just pass ${DIRECTORY_PICTURES}/Our_subdirectory as in the example shown below.
+
+
+### IS_PENDING : 
+Used to tell the content resolver there is an operation going on. Once we copied the data in the destination file (done in the copyFileData() function), we can set this value to false like shown at the end of the example below. Copying the data into the destination file can be easily done.
+
