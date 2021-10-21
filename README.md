@@ -94,3 +94,66 @@ We'll get this image and save that using mediastore.
 
 
 ![xxx](https://user-images.githubusercontent.com/86467782/138275959-a898b137-9afe-48e5-93d7-832072b0ac30.png)
+
+
+
+
+# Get bitmap from Imageview
+To save it in gallery
+
+```java
+
+package com.example.saveimage2021;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Objects;
+
+public class MainActivity extends AppCompatActivity {
+
+    ImageView ivBackGround;
+    Button btnSave;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ivBackGround = findViewById(R.id.imageView);
+        btnSave = findViewById(R.id.btnSaveImage);
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) ivBackGround.getDrawable();
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+                saveImageToGallery(bitmap);
+            }
+        });
+
+
+    }
+
+
+
+}
+
+```
