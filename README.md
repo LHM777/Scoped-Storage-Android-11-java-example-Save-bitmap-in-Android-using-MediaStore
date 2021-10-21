@@ -157,3 +157,42 @@ public class MainActivity extends AppCompatActivity {
 }
 
 ```
+
+
+
+# Saving image to gallery in Android Q and above.
+
+In this example, we're going to save our image bitmap to a folder called "TestFolder" that is located in the gallery.
+
+```java
+
+    private void saveImageToGallery(Bitmap bitmap){
+
+        OutputStream fos;
+
+        try{
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+
+                ContentResolver resolver = getContentResolver();
+                ContentValues contentValues =  new ContentValues();
+                contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "Image_" + ".jpg");
+                contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
+                contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + File.separator + "TestFolder");
+                Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+
+                fos = resolver.openOutputStream(Objects.requireNonNull(imageUri));
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                Objects.requireNonNull(fos);
+
+                Toast.makeText(this, "Image Saved", Toast.LENGTH_SHORT).show();
+            }
+
+        }catch(Exception e){
+
+            Toast.makeText(this, "Image not saved \n" + e.toString(), Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+```
